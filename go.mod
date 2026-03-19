@@ -38,7 +38,7 @@ require (
 	github.com/stackitcloud/stackit-sdk-go/services/secretsmanager v0.18.0
 	github.com/stackitcloud/stackit-sdk-go/services/serverbackup v1.6.0
 	github.com/stackitcloud/stackit-sdk-go/services/serverupdate v1.5.0
-	github.com/stackitcloud/stackit-sdk-go/services/serviceaccount v0.12.0
+	github.com/stackitcloud/stackit-sdk-go/services/serviceaccount v0.18.1
 	github.com/stackitcloud/stackit-sdk-go/services/serviceenablement v1.4.1
 	github.com/stackitcloud/stackit-sdk-go/services/sfs v0.6.3
 	github.com/stackitcloud/stackit-sdk-go/services/ske v1.12.0
@@ -108,6 +108,7 @@ require (
 	github.com/fzipp/gocyclo v0.6.0 // indirect
 	github.com/ghostiam/protogetter v0.3.20 // indirect
 	github.com/go-critic/go-critic v0.14.3 // indirect
+	github.com/go-git/go-git/v5 v5.18.0 // indirect
 	github.com/go-toolsmith/astcast v1.1.0 // indirect
 	github.com/go-toolsmith/astcopy v1.1.0 // indirect
 	github.com/go-toolsmith/astequal v1.2.0 // indirect
