@@ -2,6 +2,8 @@ module github.com/stackitcloud/terraform-provider-stackit
 
 go 1.26.0
 
+replace github.com/stackitcloud/stackit-sdk-go/core => github.com/jorturfer/stackit-sdk-go/core v0.24.2-0.20260410155049-ecf05651536d
+
 require (
 	github.com/google/go-cmp v0.7.0
 	github.com/google/uuid v1.6.0
@@ -47,8 +49,8 @@ require (
 )
 
 require (
+	github.com/go-git/go-git/v5 v5.17.2 // indirect
 	github.com/hashicorp/go-retryablehttp v0.7.7 // indirect
-	github.com/kr/text v0.2.0 // indirect
 	golang.org/x/telemetry v0.0.0-20260209163413-e7419c687ee4 // indirect
 )
 
