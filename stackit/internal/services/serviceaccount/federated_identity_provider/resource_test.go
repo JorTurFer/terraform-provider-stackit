@@ -7,7 +7,6 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/serviceaccount"
 	"github.com/stackitcloud/terraform-provider-stackit/stackit/internal/testutil"
@@ -102,7 +101,7 @@ func testAccFederatedIdentityProviderConfig(name string) string {
 			name                  = "%s"
 			issuer                = "https://example.com"
 		}
-	`, testutil.ServiceAccountProviderConfig(), testutil.ProjectId, name)
+	`, testutil.NewConfigBuilder().EnableBetaResources(true).BuildProviderConfig(), testutil.ProjectId, name)
 }
 
 func testAccFederatedIdentityProviderConfigWithAssertions() string {
@@ -133,21 +132,13 @@ func testAccFederatedIdentityProviderConfigWithAssertions() string {
 				}
 			]
 		}
-	`, testutil.ServiceAccountProviderConfig(), testutil.ProjectId)
+	`, testutil.NewConfigBuilder().EnableBetaResources(true).BuildProviderConfig(), testutil.ProjectId)
 }
 
 func testAccCheckFederatedIdentityProviderDestroy(s *terraform.State) error {
 	ctx := context.Background()
-	var client *serviceaccount.APIClient
-	var err error
 
-	if testutil.ServiceAccountCustomEndpoint == "" {
-		client, err = serviceaccount.NewAPIClient()
-	} else {
-		client, err = serviceaccount.NewAPIClient(
-			config.WithEndpoint(testutil.ServiceAccountCustomEndpoint),
-		)
-	}
+	client, err := serviceaccount.NewAPIClient(testutil.NewConfigBuilder().BuildClientOptions(testutil.ServiceAccountCustomEndpoint, false)...)
 
 	if err != nil {
 		return fmt.Errorf("creating client: %w", err)
